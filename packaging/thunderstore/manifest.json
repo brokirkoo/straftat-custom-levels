@@ -1,0 +1,9 @@
+{
+  "name": "Custom_Levels",
+  "version_number": "1.0.0",
+  "website_url": "",
+  "description": "Loads custom STRAFTAT level scenes from AssetBundles and adds them to playlists.",
+  "dependencies": [
+    "BepInEx-BepInExPack-5.4.2305"
+  ]
+}
