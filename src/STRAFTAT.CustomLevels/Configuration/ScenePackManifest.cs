@@ -16,5 +16,8 @@ namespace STRAFTAT.CustomLevels.Configuration
 
         [JsonProperty("scenes", Required = Required.Always)]
         public List<string> Scenes { get; set; }
+
+        [JsonProperty("previews", Required = Required.Default)]
+        public Dictionary<string, string> Previews { get; set; }
     }
 }

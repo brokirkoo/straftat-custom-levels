@@ -53,6 +53,10 @@
       <HintPath>$(STRAFTATManagedDir)\UnityEngine.SceneManagementModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>$(STRAFTATManagedDir)\UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>$(STRAFTATManagedDir)\UnityEngine.UI.dll</HintPath>
       <Private>false</Private>

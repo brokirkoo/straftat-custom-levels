@@ -61,5 +61,12 @@ namespace STRAFTAT.CustomLevels.Registry
 
             return false;
         }
+
+        public bool TryGet(string name, out CustomScene scene)
+        {
+            scene = null;
+            return !string.IsNullOrWhiteSpace(name) &&
+                   (_scenesByName.TryGetValue(name, out scene) || _scenesByPath.TryGetValue(name, out scene));
+        }
     }
 }

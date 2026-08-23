@@ -164,8 +164,58 @@ namespace STRAFTAT.CustomLevels.Discovery
                 return;
             }
 
+            Dictionary<string, string> previews = ResolvePreviews(entry, manifestPath);
             foreach (string declaredScene in entry.Scenes.Distinct(StringComparer.OrdinalIgnoreCase))
-                RegisterDeclaredScene(declaredScene.Trim(), internalPaths, bundle, bundlePath, manifestPath);
+            {
+                string sceneName = declaredScene.Trim();
+                previews.TryGetValue(sceneName, out string previewPath);
+                RegisterDeclaredScene(sceneName, internalPaths, bundle, bundlePath, manifestPath, previewPath);
+            }
+        }
+
+        private Dictionary<string, string> ResolvePreviews(BundleManifestEntry entry, string manifestPath)
+        {
+            var resolved = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            if (entry.Previews == null)
+                return resolved;
+
+            var scenes = new HashSet<string>(entry.Scenes.Select(scene => scene.Trim()), StringComparer.OrdinalIgnoreCase);
+            string packDirectory = Path.GetFullPath(Path.GetDirectoryName(manifestPath));
+            foreach (KeyValuePair<string, string> preview in entry.Previews)
+            {
+                string sceneName = preview.Key?.Trim();
+                if (string.IsNullOrWhiteSpace(sceneName) || !scenes.Contains(sceneName))
+                {
+                    _log.LogWarning($"Ignoring preview mapping '{preview.Key}' in '{manifestPath}': only declared scenes may have previews.");
+                    continue;
+                }
+
+                string relativePath = preview.Value;
+                if (string.IsNullOrWhiteSpace(relativePath) || Path.IsPathRooted(relativePath))
+                {
+                    _log.LogWarning($"Ignoring preview for scene '{sceneName}' in '{manifestPath}': its path must be pack-relative.");
+                    continue;
+                }
+
+                try
+                {
+                    string fullPath = Path.GetFullPath(Path.Combine(packDirectory, relativePath));
+                    if (!IsWithinDirectory(fullPath, packDirectory) ||
+                        !string.Equals(Path.GetExtension(fullPath), ".png", StringComparison.OrdinalIgnoreCase))
+                    {
+                        _log.LogWarning($"Ignoring preview for scene '{sceneName}' in '{manifestPath}': path must be a PNG inside the pack directory.");
+                        continue;
+                    }
+
+                    resolved[sceneName] = fullPath;
+                }
+                catch (Exception exception)
+                {
+                    _log.LogWarning($"Ignoring preview for scene '{sceneName}' in '{manifestPath}': invalid path ({exception.Message}).");
+                }
+            }
+
+            return resolved;
         }
 
         private void RegisterDeclaredScene(
@@ -173,7 +223,8 @@ namespace STRAFTAT.CustomLevels.Discovery
             IEnumerable<string> internalPaths,
             AssetBundle bundle,
             string bundlePath,
-            string manifestPath)
+            string manifestPath,
+            string previewPath)
         {
             string[] matches = internalPaths
                 .Where(path => string.Equals(
@@ -196,7 +247,7 @@ namespace STRAFTAT.CustomLevels.Discovery
                 return;
             }
 
-            var scene = new CustomScene(declaredScene, matches[0], bundlePath, manifestPath, bundle);
+            var scene = new CustomScene(declaredScene, matches[0], bundlePath, manifestPath, previewPath, bundle);
             if (_registry.Register(scene))
                 _log.LogInfo($"Registered custom scene '{declaredScene}' as '{matches[0]}'.");
         }
