@@ -1,0 +1,10 @@
+\\wsl.localhost\Ubuntu\home\bro\projects\straftat_custom_levels\src\STRAFTAT.CustomLevels\bin\Release\net472\STRAFTAT.CustomLevels.dll
+\\wsl.localhost\Ubuntu\home\bro\projects\straftat_custom_levels\src\STRAFTAT.CustomLevels\bin\Release\net472\STRAFTAT.CustomLevels.pdb
+\\wsl.localhost\Ubuntu\home\bro\projects\straftat_custom_levels\src\STRAFTAT.CustomLevels\obj\Release\net472\STRAFTAT.CustomLevels.csproj.AssemblyReference.cache
+\\wsl.localhost\Ubuntu\home\bro\projects\straftat_custom_levels\src\STRAFTAT.CustomLevels\obj\Release\net472\STRAFTAT.CustomLevels.GeneratedMSBuildEditorConfig.editorconfig
+\\wsl.localhost\Ubuntu\home\bro\projects\straftat_custom_levels\src\STRAFTAT.CustomLevels\obj\Release\net472\STRAFTAT.CustomLevels.AssemblyInfoInputs.cache
+\\wsl.localhost\Ubuntu\home\bro\projects\straftat_custom_levels\src\STRAFTAT.CustomLevels\obj\Release\net472\STRAFTAT.CustomLevels.AssemblyInfo.cs
+\\wsl.localhost\Ubuntu\home\bro\projects\straftat_custom_levels\src\STRAFTAT.CustomLevels\obj\Release\net472\STRAFTAT.CustomLevels.csproj.CoreCompileInputs.cache
+\\wsl.localhost\Ubuntu\home\bro\projects\straftat_custom_levels\src\STRAFTAT.CustomLevels\obj\Release\net472\STRAFTAT.CustomLevels.sourcelink.json
+\\wsl.localhost\Ubuntu\home\bro\projects\straftat_custom_levels\src\STRAFTAT.CustomLevels\obj\Release\net472\STRAFTAT.CustomLevels.dll
+\\wsl.localhost\Ubuntu\home\bro\projects\straftat_custom_levels\src\STRAFTAT.CustomLevels\obj\Release\net472\STRAFTAT.CustomLevels.pdb
